@@ -28,10 +28,10 @@ steps:
     runOptions: 'commands'
     commands: |
       cd /var/www/
-      sudo rm -rf html
+      rm -rf html
       cd /var/www/deployments/
-      sudo mkdir Dev-$(Build.BuildId)
-      sudo cp /deploy/* -d /var/www/deployments/Dev-$(Build.BuildId)
+      mkdir Dev-$(Build.BuildId)
+      cp -r /deploy/* /var/www/deployments/Dev-$(Build.BuildId)
       cd /var/www/
       sudo ln -s deployments/Dev-$(Build.BuildId) html
     readyTimeout: '20000'
