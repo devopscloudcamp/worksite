@@ -25,14 +25,6 @@ steps:
 - task: SSH@0
   inputs:
     sshEndpoint: 'DevServer'
-    runOptions: 'commands'
-    commands: |
-      #Unit Testing
-      echo "unit testing started"
-      if grep 'Fatel' /deploy/index.html; then
-       echo "Test is failed in following number of line"
-       sed -n '/Fatel/=' /deploy/index.html
-       exit 1
-      fi
-      echo "Test is Successful"
+    runOptions: 'script'
+    scriptPath: '/depoy/unittest.sh'
     readyTimeout: '20000'
