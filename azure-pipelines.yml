@@ -29,9 +29,9 @@ steps:
     commands: |
       #Unit Testing
       echo "unit testing started"
-      if grep 'Fatel' /build/$JOB_NAME-$BUILD_NUMBER/index.html; then
+      if grep 'Fatel' /deploy/index.html; then
        echo "Test is failed in following number of line"
-       sed -n '/Fatel/=' /build/$JOB_NAME-$BUILD_NUMBER/index.html
+       sed -n '/Fatel/=' /deploy/index.html
        exit 1
       fi
       echo "Test is Successful"
