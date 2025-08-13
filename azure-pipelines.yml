@@ -22,16 +22,10 @@ steps:
     contents: '**'
     targetFolder: '/deploy'
     readyTimeout: '20000'
-- task: SSH@0
+- task: ArchiveFiles@2
   inputs:
-    sshEndpoint: 'DevServer'
-    runOptions: 'commands'
-    commands: |
-      cd /var/www/
-      rm -rf html
-      cd /var/www/deployments/
-      mkdir Dev-$(Build.BuildId)
-      cp -r /deploy/* /var/www/deployments/Dev-$(Build.BuildId)
-      cd /var/www/
-      sudo ln -s deployments/Dev-$(Build.BuildId) html
-    readyTimeout: '20000'
+    rootFolderOrFile: '$(build.sourcesDirectory)'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
