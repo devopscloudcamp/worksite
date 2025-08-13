@@ -22,3 +22,15 @@ steps:
     contents: '**'
     targetFolder: '/deploy'
     readyTimeout: '20000'
+- task: Maven@4
+  inputs:
+    azureSubscription: 'Azure subscription 1(98aa80c2-2099-40d5-9ab7-a3dd3db1ba39)'
+    mavenPomFile: 'pom.xml'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    testRunTitle: 'Unit Test'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
