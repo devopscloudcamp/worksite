@@ -26,5 +26,5 @@ steps:
   inputs:
     sshEndpoint: 'DevServer'
     runOptions: 'script'
-    scriptPath: '/depoy/unittest.sh'
+    scriptPath: '/deploy/unittest.sh'
     readyTimeout: '20000'
