@@ -36,4 +36,4 @@ steps:
       fi
       echo "Test is Successful"
     failOnStdErr: false
-    readyTimeout: '200'
+    readyTimeout: '20000'
