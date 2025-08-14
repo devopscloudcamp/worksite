@@ -20,5 +20,19 @@ steps:
     sshEndpoint: 'DevServer'
     sourceFolder: '$(build.sourcesDirectory)'
     contents: '**'
-    targetFolder: '/var/www/html'
+    targetFolder: '/deploy'
+    readyTimeout: '20000'
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'DevServer'
+    runOptions: 'inline'
+    inline: |
+      #Unit Testing
+      echo "unit testing started"
+      if grep 'Fatel' /deploy/index.html; then
+       echo "Test is failed in following number of line"
+       sed -n '/Fatel/=' /deploy/index.html
+       exit 1
+      fi
+      echo "Test is Successful"
     readyTimeout: '20000'
