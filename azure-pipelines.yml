@@ -25,7 +25,7 @@ steps:
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: 'DevServer'
-    sourceFolder: 'Dev-$(Build.BuildId).zip'
+    sourceFolder: '/home/vsts/work/1/s/Dev-$(Build.BuildId).zip'
     contents: '**'
     targetFolder: '/deploy'
     readyTimeout: '20000'
