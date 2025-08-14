@@ -20,12 +20,12 @@ steps:
     rootFolderOrFile: '$(build.sourcesDirectory)'
     includeRootFolder: true
     archiveType: 'zip'
-    archiveFile: 'Dev-$(Build.BuildId).zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: 'DevServer'
-    sourceFolder: '/home/vsts/work/1/s/Dev-$(Build.BuildId).zip'
+    sourceFolder: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     contents: '**'
-    targetFolder: '/deploy'
+    targetFolder: '/deploy/'
     readyTimeout: '20000'
