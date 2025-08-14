@@ -15,17 +15,18 @@ steps:
     rootFolderOrFile: '$(build.sourcesDirectory)'
     includeRootFolder: false
 - task: PublishBuildArtifacts@1
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(build.sourcesDirectory)'
-    includeRootFolder: true
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: 'DevServer'
-    sourceFolder: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    sourceFolder: '$(build.sourcesDirectory)'
     contents: '**'
-    targetFolder: '/deploy/'
+    targetFolder: '/deploy'
+    readyTimeout: '20000'
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'DevServer'
+    runOptions: 'commands'
+    commands: |
+      cd /deploy
+      ./unittest.sh
     readyTimeout: '20000'
