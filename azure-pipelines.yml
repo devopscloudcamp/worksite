@@ -20,13 +20,5 @@ steps:
     sshEndpoint: 'DevServer'
     sourceFolder: '$(build.sourcesDirectory)'
     contents: '**'
-    targetFolder: '/deploy'
-    readyTimeout: '20000'
-- task: SSH@0
-  inputs:
-    sshEndpoint: 'DevServer'
-    runOptions: 'commands'
-    commands: |
-      cd /deploy
-      ./unittest.sh
+    targetFolder: '/var/www/html'
     readyTimeout: '20000'
