@@ -46,8 +46,6 @@ steps:
       cd /var/www/deployments/
       sudo mkdir Dev-$(Build.BuildId)
       sudo cp -r /deploy/* /var/www/deployments/Dev-$(Build.BuildId)
-      mkdir Dev-$(Build.BuildId)
-      cp -r /deploy/* /var/www/deployments/Dev-$(Build.BuildId)
       cd /var/www/
       sudo ln -s deployments/Dev-$(Build.BuildId) html
     readyTimeout: '20000'
